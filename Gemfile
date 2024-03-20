@@ -58,6 +58,9 @@ group :development do
   gem "rubocop-shopify", require: false
   gem "rubocop-rails", require: false
 
+  gem "faker"
+  gem "tty-spinner"
+
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
