@@ -49,6 +49,9 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :windows]
+  gem "faker"
+  gem "tty-spinner"
+  gem "dotenv"
 end
 
 group :development do
@@ -57,9 +60,6 @@ group :development do
 
   gem "rubocop-shopify", require: false
   gem "rubocop-rails", require: false
-
-  gem "faker"
-  gem "tty-spinner"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
