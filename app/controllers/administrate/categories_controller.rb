@@ -2,8 +2,7 @@
 
 module Administrate
   class CategoriesController < AdministrateController
-    before_action :set_category, only: [:show, :edit, :update, :destroy, :destroy_cover_image]
-    # before_action :set_categories, only: [:new, :edit, :show]
+    before_action :set_category, only: [:show, :edit, :update, :destroy]
 
     # GET /categories or /categories.json
     def index
@@ -29,7 +28,9 @@ module Administrate
 
       respond_to do |format|
         if @category.save
-          format.html { redirect_to(administrate_category_url(@category), notice: "Category was successfully created.") }
+          format.html do
+            redirect_to(administrate_category_url(@category), notice: "Category was successfully created.")
+          end
           format.json { render(:show, status: :created, location: @category) }
         else
           format.html { render(:new, status: :unprocessable_entity) }
@@ -42,7 +43,9 @@ module Administrate
     def update
       respond_to do |format|
         if @category.update(category_params)
-          format.html { redirect_to(administrate_category_url(@category), notice: "Category was successfully updated.") }
+          format.html do
+            redirect_to(administrate_category_url(@category), notice: "Category was successfully updated.")
+          end
           format.json { render(:show, status: :ok, location: @category) }
         else
           format.html { render(:edit, status: :unprocessable_entity) }
@@ -53,10 +56,18 @@ module Administrate
 
     # DELETE /categories/1 or /categories/1.json
     def destroy
-      @category.destroy!
-
       respond_to do |format|
-        format.html { redirect_to(administrate_categories_url, notice: "Category was successfully destroyed.") }
+        format.html do
+          if @category.articles.count > 0
+            redirect_to(
+              administrate_categories_url,
+              alert: "There are articles associated with this category. It cannot be deleted.",
+            )
+          else
+            @category.destroy!
+            redirect_to(administrate_categories_url, notice: "Category was successfully destroyed.")
+          end
+        end
         format.json { head(:no_content) }
       end
     end
@@ -72,9 +83,5 @@ module Administrate
     def category_params
       params.require(:category).permit(:name)
     end
-
-    # def set_categories
-    #   @categories = Category.all
-    # end
   end
 end
