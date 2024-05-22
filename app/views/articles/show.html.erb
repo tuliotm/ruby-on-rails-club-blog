@@ -8,7 +8,7 @@
   <div class="container">
     <div class="primary-content">
       <div class="post-detail-image">
-          <%= image_tag(cover_image_fallback(@article, :medium), alt: @article.title) %>
+        <%= image_tag(cover_image_fallback(@article, :medium), alt: @article.title) %>
       </div>
     </div>
     <div class="secondary-content">
@@ -84,15 +84,19 @@
             <%= link_to @article.author.facebook_profile_url do %>
               <%= image_tag "icons/gray/facebook.svg" %>
             <% end %>
+
             <%= link_to @article.author.instagram_profile_url do %>
               <%= image_tag "icons/gray/instagram.svg" %>
             <% end %>
+
             <%= link_to @article.author.twitter_profile_url do %>
               <%= image_tag "icons/gray/twitter.svg" %>
             <% end %>
+
             <%= link_to @article.author.linkedin_profile_url do %>
               <%= image_tag "icons/gray/linkedin.svg" %>
             <% end %>
+
             <%= link_to @article.author.youtube_profile_url do %>
               <%= image_tag "icons/gray/youtube.svg" %>
             <% end %>
@@ -105,7 +109,7 @@
           <div class="comment-actions">
             <div class="label">ordenar por: </div>
             <%= form_with(url: article_url(@article), method: :get) do |form| %>
-              <%= form.select :sort_by, options_for_select([["Últimos comentários", "last_comments"], ["Mais recentes", "more_recents"], params[:sort_by]]), {},  { class: "select clean small", onchange: "this.form.submit()" } %>
+              <%= form.select :sort_by, options_for_select([["Últimos comentários", "last_comments"], ["Mais recentes", "more_recents"]], params[:sort_by]), {}, { class:"select clean small", onchange: "this.form.submit()" } %>
             <% end %>
           </div>
         </div>
@@ -116,7 +120,7 @@
           <% end %>
         </div>
         <div class="post-detail-comments-list">
-          <%= @comments.each do |comment| %>
+          <% @comments.each do |comment| %>
             <% next if comment.new_record? %>
             <div class="post-detail-comment-item">
               <div class="author-row">
@@ -156,7 +160,7 @@
             <%= image_tag(cover_image_fallback(other_article, :thumb), alt: other_article.title, class: "post-resume-image") %>
             <h4 class="post-resume-title"><%= other_article.title %></h4>
           </a>
-       <% end %>
+        <% end %>
       </div>
       <a href="#" class="post-content-ad">
         <%= image_tag "ad/post-content-footer-ad.jpg" %>

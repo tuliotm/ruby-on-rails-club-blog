@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
   def create
     @article = Article.friendly.find(params[:article_id])
-    @article.comments.create(comments_params)
+    @article.comments.create!(comments_params)
 
     redirect_to(article_path(@article))
   end
@@ -13,6 +13,6 @@ class CommentsController < ApplicationController
   private
 
   def comments_params
-    params.require(:comments).permit(:body).merge(user: current_user)
+    params.require(:comment).permit(:body).merge(user: current_user)
   end
 end
