@@ -15,18 +15,32 @@ class CommentsController < ApplicationController
   end
 
   def like
-    if Comment.find(params[:id]).increment!(:like)
+    comment_like_dislike = CommentLikeDislike.find_or_initialize_by(comment_id: params[:id], user: current_user)
+
+    if comment_like_dislike.new_record?
+      comment_like_dislike.save!
+      Comment.find(params[:id]).increment!(:like)
       redirect_to(article_path(@article), notice: "Like registrado!")
     else
-      redirect_to(article_path(@article), notice: "Não foi possível registrar o like!")
+      message = "Não foi possível registrar o like!"
+      message = "Você já registrou seu like/dislike!" unless comment_like_dislike.new_record?
+
+      redirect_to(article_path(@article), alert: message)
     end
   end
 
   def dislike
-    if Comment.find(params[:id]).increment!(:dislike)
-      redirect_to(article_path(@article), notice: "Dislike registrado!")
+    comment_like_dislike = CommentLikeDislike.find_or_initialize_by(comment_id: params[:id], user: current_user)
+
+    if comment_like_dislike.new_record?
+      comment_like_dislike.save!
+      Comment.find(params[:id]).increment!(:dislike)
+      redirect_to(article_path(@article), notice: "Like registrado!")
     else
-      redirect_to(article_path(@article), notice: "Não foi possível registrar o dislike!")
+      message = "Não foi possível registrar o dislike!"
+      message = "Você já registrou seu like/dislike!" unless comment_like_dislike.new_record?
+
+      redirect_to(article_path(@article), alert: message)
     end
   end
 
