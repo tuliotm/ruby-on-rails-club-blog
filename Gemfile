@@ -49,6 +49,9 @@ gem "image_processing", "~> 1.2"
 # Integrate SassC-Ruby into Rails.
 gem "sassc-rails"
 
+# A fast, safe and extensible Markdown to (X)HTML parser
+gem "redcarpet"
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: [:mri, :windows]
