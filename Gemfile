@@ -80,3 +80,5 @@ gem "friendly_id", "~> 5.5", ">= 5.5.1"
 
 # Flexible authentication solution for Rails with Warden
 gem "devise", "~> 4.9", ">= 4.9.3"
+
+gem "tailwindcss-rails", "~> 2.6"

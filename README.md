@@ -1,24 +1,33 @@
-# README
+# Posts API Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Project developed for users to create posts and rate them.
 
-Things you may want to cover:
+## Environment Setup
 
-* Ruby version
+Make sure you have the following versions installed:
 
-* System dependencies
+- Ruby: 3.3.0
+- Rails: 7.1.3.2
+- Bundler: 2.4.22
 
-* Configuration
+## Install project dependencies:
+```bash
+bundle install
+```
 
-* Database creation
+**--------------- The first time only, follow the instructions below. ---------------**
 
-* Database initialization
+* Run to build tailwind:
+```console
+./bin/dev
+```
 
-* How to run the test suite
+## Now you can start the server normally:
+```bash
+rails server
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run the seeds to populate the database:
+```bash
+rails db:dev_reset
+```
