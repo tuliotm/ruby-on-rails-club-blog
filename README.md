@@ -1,6 +1,6 @@
-# Posts API Project
+# Blog Monolith Project
 
-Project developed for users to create posts and rate them.
+Project developed to practice.
 
 ## Environment Setup
 
@@ -8,7 +8,7 @@ Make sure you have the following versions installed:
 
 - Ruby: 3.3.0
 - Rails: 7.1.3.2
-- Bundler: 2.4.22
+- Bundler: 2.5.6
 
 ## Install project dependencies:
 ```bash
